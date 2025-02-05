@@ -30,23 +30,31 @@ export const sendImage = async (req,res)=>{
         fileUrl
     });
 }
-export const getImage = async(req,res)=>{
-    const { uid,key } = req.query;
-    console.log("ok")
-    if(!key) return res.status(400).json({ error: 'No reference found' });
+export const getImage = async (req, res) => {
+  const { uid, key } = req.query;
+  console.log("ok");
 
-    const response = await storageModel.findOne({key:key});
+  if (!key) {
+      return res.status(400).json({ error: 'No reference found' });
+  }
 
-    if(!response){
-        return res.send(404).json({message:"Key not found"});
-    }
-    const fileUrl = response.imagelink;
-    res.status(201).json({ 
-        message: 'File retrieved successfully', 
-        fileUrl 
-    });
+  try {
+      const response = await storageModel.findOne({ key: key });
 
-}
+      if (!response) {
+          return res.status(404).json({ message: "Key not found" });
+      }
+
+      const fileUrl = response.imagelink;
+      res.status(200).json({ 
+          message: 'File retrieved successfully', 
+          fileUrl 
+      });
+  } catch (error) {
+      res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+
 
 
 
