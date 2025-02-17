@@ -11,6 +11,7 @@ import cachingRouter from "./routes/cachingRoutes.js";
 import KeyValueService from "./store/keyValueService.js";
 import cronRoute from "./cron/cronRoute.js"
 import "./cron/cronjob.js";
+import testrouter from "./routes/testroutes.js";
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +24,7 @@ console.log(path.join(__dirname, 'public'))
 app.use("/api/storage",storageRoutes)
 app.use('/api/caching',cachingRouter)
 app.use("/api/tasks", cronRoute);
-
+app.use("/api/testing",testrouter);
 app.use(cors()) //temporray
 // const corsOptions = {
 //     origin: [],
