@@ -40,6 +40,16 @@ export const getImage = async (req, res) => {
 
   try {
       const response = await storageModel.findOne({ key: key });
+export const getImage = async (req, res) => {
+  const { uid, key } = req.query;
+  console.log("ok");
+
+  if (!key) {
+      return res.status(400).json({ error: 'No reference found' });
+  }
+
+  try {
+      const response = await storageModel.findOne({ key: key });
 
       if (!response) {
           return res.status(404).json({ message: "Key not found" });
