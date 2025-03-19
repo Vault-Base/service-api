@@ -31,7 +31,7 @@ export const sendImage = async (req,res)=>{
     });
 }
 export const getImage = async(req,res)=>{
-    const { uid,key } = req.body;
+    const { uid,key } = req.query;
     if(!key) return res.status(400).json({ error: 'No reference found' });
 
     const response = await storageModel.findOne({key:key});
