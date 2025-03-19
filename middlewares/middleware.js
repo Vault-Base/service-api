@@ -4,7 +4,7 @@ export const protect = (req,res,next)=>{
     console.log("veri");
     // console.log(secretKey)
     // console.log(req.headers.authorization)
-    console.log(authkey);
+    console.log(authKey);
     if(!authKey) return res.status(400).json({message:"no key found"})
     if(secretKey==authKey){
         next();
