@@ -4,7 +4,7 @@ const DEFAULT_TTL =   60 * 60;
 
 export const setKey = async(req,res)=>{
     const { uid, key, value, ttl } = req.body;
-
+    console.log("seeting of caching called",key);
     if (!uid || !key || value === undefined) {
         return res.status(400).json({ message: 'UID, key, and value are required' });
     }
